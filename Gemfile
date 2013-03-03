@@ -12,7 +12,8 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0.beta1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', platforms: :ruby
+  gem 'therubyracer', platforms: :ruby, :require => 'v8'
+  gem 'execjs'
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -37,3 +38,5 @@ gem 'thin'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'useragent'
