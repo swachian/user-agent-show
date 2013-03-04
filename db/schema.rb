@@ -13,13 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20130303031322) do
 
-  create_table "user_agents", force: true do |t|
+  create_table "user_agent_mys", force: true do |t|
     t.string   "browser"
     t.string   "version"
     t.string   "os"
     t.string   "mobile"
     t.string   "model"
     t.string   "vendor"
+    t.string   "md5"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

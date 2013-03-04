@@ -7,6 +7,7 @@ gem 'rails', '4.0.0.beta1'
 
 group :development do
   gem 'sqlite3'
+  gem 'mysql2'
 end
 
 gem 'pg'

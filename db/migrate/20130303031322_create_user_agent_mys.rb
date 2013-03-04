@@ -1,6 +1,6 @@
-class CreateUserAgents < ActiveRecord::Migration
+class CreateUserAgentMys < ActiveRecord::Migration
   def change
-    create_table :user_agents do |t|
+    create_table :user_agent_mys do |t|
       t.string :browser
       t.string :version
       t.string :os
