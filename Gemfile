@@ -48,4 +48,4 @@ gem 'thin'
 # To use debugger
 # gem 'debugger'
 
-gem 'useragent'
+gem 'user_agent_parser'
