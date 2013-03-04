@@ -4,3 +4,5 @@
 
 document.cookie = "height="+window.innerHeight;
 document.cookie = 'width='+window.innerWidth;
+
+

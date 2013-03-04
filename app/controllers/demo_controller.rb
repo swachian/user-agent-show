@@ -12,18 +12,24 @@ class DemoController < ApplicationController
     @os = @@js.eval 'parser.getOS()'
     
     
-    @height = cookies['height']
-    @width = cookies['width']
+    @height = cookies['height'] || 1
+    @width = cookies['width'] || 1
     
     md5 = Digest::MD5.hexdigest(@ua)
     @uamy = UserAgentMy.find_by_md5(md5) || UserAgentMy.new
     @uamy.update_attributes(:ua => @ua, :browser_name => @browser['name'], :browser_version => @browser['version'],
     :device_model => @device['model'], :device_vendor => @device['vendor'], :device_type => @device['type'],
     :engine_name => @engine['name'], :engine_version => @engine['version'],
-    :os_name => @os['name'], :os_version => @os['version'], :md5 => md5
+    :os_name => @os['name'], :os_version => @os['version'], :md5 => md5,
+    :height => @height, :width => @width
     
     )
     
+  end
+  
+  def list
+    view
+    @uas = UserAgentMy.all(:order => "os_name asc, os_version desc, device_vendor asc, browser_name asc, browser_version asc")
   end
 
   
