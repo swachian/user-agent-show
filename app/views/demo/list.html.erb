@@ -1,3 +1,9 @@
+<p>
+  Download:
+  <%= link_to "CSV", demo_list_path(format: "csv") %> |
+  <%= link_to "Excel", demo_list_path(format: "xls") %>
+</p>
+
 <% @uas.each do |ua| %>
   <% if @uamy.md5 == ua.md5 %>
     <strong > <%= ua.to_s %>, <b> yours </b> </strong>

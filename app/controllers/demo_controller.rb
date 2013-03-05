@@ -24,6 +24,12 @@ class DemoController < ApplicationController
   def list
     view
     @uas = UserAgentMy.all(:order => "os_name asc, os_version desc, device_vendor asc, browser_name asc, browser_version asc")
+    
+    respond_to do |format|
+      format.html
+      format.csv { send_data UserAgentMy.to_csv }
+      format.xls  { send_data UserAgentMy.to_csv(col_sep: "\t") }
+    end
   end
 
   
