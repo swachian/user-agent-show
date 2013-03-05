@@ -3,15 +3,9 @@ class DemoController < ApplicationController
   @@js = ExecJS.compile(source)  
   @@js.eval 'parser = new UAParser()'  
   def view
-    @ua = request.headers['User-Agent']
-    puts @ua
-    @@js.eval "parser.setUA('#{@ua}')"
-    @browser = @@js.eval 'parser.getBrowser()'
-    @device = @@js.eval 'parser.getDevice()'
-    @engine = @@js.eval 'parser.getEngine()'
-    @os = @@js.eval 'parser.getOS()'
-    
-    
+
+    js_ua_parse()
+    ua_parse_ruby()
     @height = cookies['height'] || 1
     @width = cookies['width'] || 1
     
@@ -37,6 +31,24 @@ class DemoController < ApplicationController
     
     def ua_params
       
+    end
+    
+    def ua_parse_ruby
+      @ua = request.headers['User-Agent']
+      user_agent = UserAgentParser.parse @ua 
+      @browser = {"name" => user_agent.name, "version" => user_agent.version.to_s}
+      @device = {"model" => user_agent.device.name } if @device['model'].blank?
+      #@os = {name: user_agent.os.name, version: user_agent.os.version}
+    end
+    
+    def js_ua_parse
+      @ua = request.headers['User-Agent']
+      puts @ua
+      @@js.eval "parser.setUA('#{@ua}')"
+      @browser = @@js.eval 'parser.getBrowser()'
+      @device = @@js.eval 'parser.getDevice()'
+      @engine = @@js.eval 'parser.getEngine()'
+      @os = @@js.eval 'parser.getOS()'
     end
   # uc = Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HUAWEI C8812 Build/HuaweiC8812) UC AppleWebKit/534.31 (KHTML, like Gecko) Mobile Safari/534.31
 
