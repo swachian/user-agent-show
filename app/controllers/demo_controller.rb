@@ -36,7 +36,7 @@ class DemoController < ApplicationController
     def ua_parse_ruby
       @ua = request.headers['User-Agent']
       user_agent = UserAgentParser.parse @ua 
-      @browser = {"name" => user_agent.name, "version" => user_agent.version.to_s}
+      @browser = {"name" => user_agent.name, "version" => user_agent.version.to_s} if @browser['name'].blank?
       @device = {"model" => user_agent.device.name } if @device['model'].blank?
       #@os = {name: user_agent.os.name, version: user_agent.os.version}
     end
