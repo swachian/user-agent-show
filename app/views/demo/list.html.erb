@@ -1,7 +1,9 @@
 <% @uas.each do |ua| %>
-  <%= ua.to_s %>
   <% if @uamy.md5 == ua.md5 %>
-    , <b> yours </b>
+    <strong > <%= ua.to_s %>, <b> yours </b> </strong>
+  <% else %>  
+    <%= ua.to_s %>
   <% end %>
+  
    <br />
 <% end %>
